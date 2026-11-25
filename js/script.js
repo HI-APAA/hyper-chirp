@@ -27,18 +27,26 @@ function renderCard (chirp) {
             `;
     const likeButton = document.createElement('button');
     likeButton.dataset.id = id;
-    likeButton.classList.add('like-btn');
+    likeButton.classList.add('like-button');
     likeButton.textContent = `♡ ${likes}`;
     div.append(likeButton);
     return div;
+}
+
+function renderLikes() {
+document.querySelectorAll('.like-button').forEach((like) => {
+        like.addEventListener('click', () => {
+            likePost(like.dataset.id, like); // runs the likePost function on the specific id and like that are associated with the button click 
+        });
+    })
 }
 
 function renderChirps (chirps) {
     chirps.forEach(chirp => {
         chirpsContainer.appendChild(renderCard(chirp))
     })
+    renderLikes()
 }
-
 
 function loading(state) {
     loader.style.opacity = state ? 1 : 0;
@@ -57,6 +65,22 @@ function handleSubmit() {
     loading(true);
     form.reset();
     fetchChirps();
+}
+
+async function likePost(id, like) {
+    try {
+        const response = await fetch(`${url()}/${id}/like`,
+        {
+            method: 'POST'
+        }
+    )
+    if (!response.ok) throw new Error ("http", response.status);
+    const postObject = await response.json();
+    like.textContent = `♥︎ ${postObject.likes}`;
+    like.disabled = true;
+    } catch (error) {
+        console.error(error);
+}
 }
 
 async function postChirp(payload) {
