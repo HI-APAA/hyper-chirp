@@ -34,7 +34,16 @@ function renderCard (chirp) {
 }
 
 function renderLikes() {
-document.querySelectorAll('.like-button').forEach((like) => {
+    const likedPosts = JSON.parse(localStorage.getItem('liked-posts') || '{}');
+
+    document.querySelectorAll('.like-button').forEach((like) => {
+        const likedPost = likedPosts[like.dataset.id];
+
+        if (likedPost) {
+            like.classList.add(...likedPost.classList);
+            like.disabled = true;
+        }
+
         like.addEventListener('click', () => {
             likePost(like.dataset.id, like); // runs the likePost function on the specific id and like that are associated with the button click 
         });
@@ -77,7 +86,15 @@ async function likePost(id, like) {
     if (!response.ok) throw new Error ("http", response.status);
     const postObject = await response.json();
     like.textContent = `♥︎ ${postObject.likes}`;
+    like.classList.add('liked');
     like.disabled = true;
+    const likedPosts = JSON.parse(localStorage.getItem('liked-posts') || '{}');
+    likedPosts[like.dataset.id] = {
+        id: like.dataset.id,
+        classList: [...like.classList]
+    };
+    localStorage.setItem('liked-posts', JSON.stringify(likedPosts));
+    
     } catch (error) {
         console.error(error);
 }
