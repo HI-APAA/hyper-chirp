@@ -24,7 +24,12 @@ function renderCard (chirp) {
     div.innerHTML = `
             <h3>${author_name}</h3>
             <p>${content}</p>    
-            `
+            `;
+    const likeButton = document.createElement('button');
+    likeButton.dataset.id = id;
+    likeButton.classList.add('like-btn');
+    likeButton.textContent = `♡ ${likes}`;
+    div.append(likeButton);
     return div;
 }
 
