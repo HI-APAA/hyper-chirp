@@ -112,3 +112,114 @@ hr {
 .back-button:hover {
   background-color: var(--lime);
 }
+/* ---------- 4. Buttons ---------- */
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 24px;
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  font-family: var(--font-poppins);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* lime button with the black shadow */
+.button--primary {
+  background-color: var(--lime);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* mouse over: the button moves a bit toward its shadow */
+.button--primary:hover {
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(2px, 2px);
+}
+
+/* click: the button presses down flat */
+.button--primary:active {
+  box-shadow: none;
+  transform: translate(5px, 5px);
+}
+
+/* text-only button, like "Cancel" */
+.button--ghost {
+  height: auto;
+  padding: 8px;
+  border-color: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.button--ghost:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ---------- 5. Tag (the lime #hashtag pill) ---------- */
+
+.tag {
+  display: inline-block;
+  max-width: 100%;
+  padding: 1px 10px;
+  border: 2px solid var(--ink);
+  border-radius: 11px;
+  background-color: var(--lime);
+  font-family: var(--font-vt323);
+  font-size: 18px;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* very long tags end with "..." */
+}
+
+/* only tags you can click change color on hover */
+a.tag:hover,
+button.tag:hover {
+  background-color: var(--cream);
+}
+
+/* ---------- 6. Avatar (small round picture in post cards) ---------- */
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background-color: var(--purple);
+  object-fit: cover;
+}
+
+/* the default picture already has its own border */
+.avatar--placeholder {
+  border: none;
+  background-color: transparent;
+}
+
+/* ---------- 7. Dashed line ---------- */
+
+.divider {
+  width: 100%;
+  height: 1.5px;
+  background-image: url("../assets/img/dash-horizontal.svg");
+  background-repeat: repeat-x;
+}
+
+.divider--error {
+  background-image: url("../assets/img/dash-horizontal-orange.svg");
+}
