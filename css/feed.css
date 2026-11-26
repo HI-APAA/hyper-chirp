@@ -108,3 +108,56 @@
   flex-wrap: wrap;
   gap: 6px;
 }
+/* ---------- 3. Buttons under the post (like, comment, rechirp, save) ---------- */
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  padding-left: 48px;
+}
+
+.post-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 72px;
+  height: 28px;
+  border: 2px solid transparent;
+  border-radius: 13px;
+  font-family: var(--font-vt323);
+  font-size: 18px;
+  color: var(--ink);
+}
+
+.post-action:hover {
+  border-color: var(--ink);
+}
+
+.post-action__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* the filled heart is hidden at first */
+.post-action__icon--active {
+  display: none;
+}
+
+/* Liked (add .is-active in JavaScript):
+     orange pill, filled heart. */
+.post-action.is-active {
+  width: 78px;
+  margin-left: -6px;
+  padding-left: 7px;
+  border-color: var(--ink);
+  background-color: var(--orange);
+}
+
+.post-action.is-active .post-action__icon--default {
+  display: none;
+}
+
+.post-action.is-active .post-action__icon--active {
+  display: block;
+}
