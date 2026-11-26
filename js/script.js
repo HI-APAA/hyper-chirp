@@ -3,9 +3,8 @@ const chirpsContainer = document.querySelector('.chirps')
 const button = document.querySelector('.load-data')
 const loader = document.querySelector('.loader')
 const form = document.querySelector('#chirp-form');
-const nameInput = document.querySelector('#name-input');
+const nameInput = document.querySelectorAll('.name-input');
 const submitButton = form.querySelector('button');
-const body = document.body;
 
 async function fetchChirps() {
     try {
@@ -37,15 +36,12 @@ function renderCard (chirp) {
 
 function renderLikes() {
     const likedPosts = JSON.parse(localStorage.getItem('liked-posts') || '{}');
-
     document.querySelectorAll('.like-button').forEach((like) => {
         const likedPost = likedPosts[like.dataset.id];
-
         if (likedPost) {
             like.classList.add(...likedPost.classList);
             like.disabled = true;
         }
-
         like.addEventListener('click', () => {
             likePost(like.dataset.id, like); // runs the likePost function on the specific id and like that are associated with the button click 
         });
@@ -122,38 +118,80 @@ async function postChirp(payload) {
     }
 }
 
-nameInput.addEventListener('submit', event => {
-    event.preventDefault();
-    const nameData = new FormData(nameInput);
-    let username = JSON.parse(localStorage.getItem('username') || '{}');
-    username = {
-        author_name: nameData.get('author_name'),
-    };
+// Save name input to local storage and display it
+
+
+nameInput.forEach(nameInput => {
+    nameInput.addEventListener('submit', event => {
+        event.preventDefault();
+        const nameData = new FormData(event.currentTarget);
+        const username = {
+            author_name: String(nameData.get('author_name') || '').trim()
+        }
+        if (!username.author_name) {
+            alert('Please enter a name.');
+            return;
+        }
     localStorage.setItem('username', JSON.stringify(username));
+    getUsernameFromLocalStorage();
+    if (event.currentTarget.id === 'choose-name') {
+    hideWelcomePopUp(username);
+    };
 })
+});
 
 function getUsernameFromLocalStorage() {
     const username = JSON.parse(localStorage.getItem('username') || '{}');
 
-    nameInput.elements.author_name.value = username.author_name || '';;
+    nameInput.forEach(nameInput => {
+        if (nameInput.id !== 'choose-name') {
+            nameInput.elements.author_name.value = username.author_name || '';
+        }
+    });
 
-    const displayUsername = document.createElement('h2');
-    displayUsername.textContent = username.author_name || '';;
-    body.append(displayUsername);
+    displaySavedNameInDocument(username);
 }
 
-
 getUsernameFromLocalStorage();
+
+function displaySavedNameInDocument(username) {
+    let displayUsername = document.querySelector('#saved-username');
+    if (!username?.author_name) {
+        return;
+        }
+    if (!displayUsername) {
+        displayUsername = document.createElement('h2');
+        displayUsername.id = 'saved-username';
+        document.body.append(displayUsername);
+    }
+    displayUsername.textContent = username.author_name;
+}
+
+function hideWelcomePopUp(username) {
+    const chooseNameInput = document.querySelector('#choose-name');
+    const welcomePopUp = document.querySelector('#welcome-popup')
+        if (chooseNameInput && username?.author_name) {
+            welcomePopUp.classList.add('hidden');
+    }
+}
+
+hideWelcomePopUp(JSON.parse(localStorage.getItem('username')));
+
 
 form.addEventListener('submit', event => {
     event.preventDefault();
     const formData = new FormData(form);
+    if (!String(JSON.parse(localStorage.getItem('username') || '{}').author_name || '').trim()) {
+        document.querySelector('#welcome-popup').classList.remove('hidden');
+        alert('Please choose a name before posting.');
+        return;
+    }
     const payload = {
-        author_name: nameInput.elements.author_name.value,
+        author_name: String(JSON.parse(localStorage.getItem('username') || '{}').author_name).trim(),
         content: formData.get('content'),
         tag: formData.get('tag') || undefined,
         is_anonymous: formData.has('is_anonymous'),
-    }
+    };
     loading(true);
     postChirp(payload);
 })

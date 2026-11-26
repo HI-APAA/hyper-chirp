@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>APAA</title>
+    <link rel="stylesheet" href="css/styles.css">
     <script defer src="js/script.js"></script>
   </head>
 
@@ -12,12 +13,6 @@
     <main>
 
       <h1 id="title">APAA</h1>
-
-        <form id="name-input" style="display: flex; flex-direction: column; width: 400px;">
-            <label for="name">Name</label>
-            <input id="name" type="text" placeholder="Your name" name="author_name">
-            <button type="submit">Change name</button>
-        </form>
 
       <form id="chirp-form" style="display: flex; flex-direction: column; width: 400px;">
 
@@ -40,6 +35,27 @@
         <button class="load-data">load chirps</button>
       </div>
       
+    <div id="welcome-popup" class="popup">
+        <h2 class="greeting">Welcome to APAA!</h2>
+        <p class="popup-text">To start posting, please choose a name for yourself. You can change your name later, or make individual posts anonymous.</p>
+        <form id="choose-name" class="name-input" style="display: flex; flex-direction: column; width: 400px;" required>
+            <label for="name">Name</label>
+            <input class="name" type="text" placeholder="Your name" name="author_name">
+            <button type="submit">Choose name</button>
+        </form>
+      </div>
+
+    <div id="change-name-popup" class="popup">
+        <h2>Change your name</h2>
+        <p class="popup-text">Enter your new name below</p>
+        <form id="change-name" class="name-input" style="display: flex; flex-direction: column; width: 400px;">
+            <label for="name">Name</label>
+            <input class="name" type="text" placeholder="Your name" name="author_name">
+            <button type="submit">Change name</button>
+        </form>
+        <button id="close-popup">Close</button>
+      </div>
+
     </main>
     
   </body>
