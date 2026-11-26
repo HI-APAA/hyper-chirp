@@ -161,3 +161,50 @@
 .post-action.is-active .post-action__icon--active {
   display: block;
 }
+/* ---------- 4. Square "+" button ---------- */
+/* Phone: stays in the bottom corner above the tab bar. */
+
+.fab {
+  position: fixed;
+  right: 41px;
+  bottom: 92px; /* tab bar 76px + 16px space */
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border: 2.5px solid var(--ink);
+  border-radius: 14px;
+  background-color: var(--lime);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.fab__icon {
+  width: 30px;
+}
+
+.fab:hover {
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(2px, 2px);
+}
+
+.fab:active {
+  box-shadow: none;
+  transform: translate(5px, 5px);
+}
+
+@media (min-width: 1200px) {
+  .fab {
+    position: absolute;
+    top: 25px;
+    right: 77px;
+    bottom: auto;
+    width: 85px;
+    height: 85px;
+  }
+
+  .fab__icon {
+    width: 38px;
+  }
+}
