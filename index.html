@@ -13,10 +13,12 @@
 
       <h1 id="title">APAA</h1>
 
-      <form id="chirp-form" style="display: flex; flex-direction: column; width: 400px;">
+        <form id="name-input" style="display: flex; flex-direction: column; width: 400px;">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your name" name="author_name">
+        </form>
 
-        <label for="name">Name</label>
-        <input id="name" type="text" placeholder="Your name" name="author_name">
+      <form id="chirp-form" style="display: flex; flex-direction: column; width: 400px;">
 
         <label for="content">Content</label>
         <textarea id="content" placeholder="Write your message" name="content" maxlength="280" required></textarea>

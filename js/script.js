@@ -3,6 +3,7 @@ const chirpsContainer = document.querySelector('.chirps')
 const button = document.querySelector('.load-data')
 const loader = document.querySelector('.loader')
 const form = document.querySelector('#chirp-form');
+const nameInput = document.querySelector('#name-input');
 const submitButton = form.querySelector('button');
 
 async function fetchChirps() {
