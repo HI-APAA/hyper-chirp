@@ -223,3 +223,312 @@ button.tag:hover {
 .divider--error {
   background-image: url("../assets/img/dash-horizontal-orange.svg");
 }
+/* ---------- 8. Page layout ---------- */
+
+.page {
+  min-height: 100vh;
+  padding-bottom: 100px; /* space for the tab bar */
+  background-image: url("../assets/img/bg-pattern-mobile.svg");
+  background-size: 402px;
+}
+
+.page__main {
+  position: relative;
+  padding: 0 16px;
+}
+
+/* tablet: keep the content in the middle */
+@media (min-width: 768px) {
+  .page__main {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+
+/* desktop: 3 columns = sidebar | content | empty right side */
+@media (min-width: 1200px) {
+  .page {
+    display: grid;
+    grid-template-columns: 340px 1fr 65px;
+    align-items: start;
+    padding-bottom: 0;
+    background-image: url("../assets/img/bg-pattern-desktop.svg");
+    background-size: 1440px;
+  }
+
+  .page__main {
+    width: 100%;
+    max-width: 896px;
+    padding: 68px 16px 48px;
+  }
+}
+
+/* ---------- 9. Header ---------- */
+/* Phone: top bar. Desktop: sidebar on the left. */
+
+.site-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  grid-template-areas:
+    "back logo  ."
+    "user user  inbox";
+  align-items: center;
+  row-gap: 20px;
+  padding: 24px 16px;
+}
+
+.site-header__back {
+  grid-area: back;
+}
+
+.site-header__logo {
+  grid-area: logo;
+  justify-self: center;
+}
+
+.site-header__logo-img {
+  width: 120px;
+  height: auto;
+}
+
+.site-header__user {
+  grid-area: user;
+}
+
+.site-header__inbox {
+  grid-area: inbox;
+  justify-self: end;
+}
+
+/* the menu and the big button are only for desktop */
+.site-header__nav {
+  display: none;
+}
+
+.site-header__cta {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .site-header {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    max-width: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 40px 32px 48px 48px;
+    /* dashed line on the right side of the sidebar */
+    background-image: url("../assets/img/dash-vertical.svg");
+    background-position: right top;
+    background-repeat: repeat-y;
+  }
+
+  .site-header__back {
+    display: none;
+  }
+
+  .site-header__inbox {
+    display: none;
+  }
+
+  .site-header__logo {
+    align-self: flex-start;
+    padding: 0 0 60px 12px;
+  }
+
+  .site-header__logo-img {
+    width: 141px;
+  }
+
+  .site-header__nav {
+    display: block;
+  }
+
+  .site-header__cta {
+    display: flex;
+    margin-top: 16px;
+  }
+
+  /* push the user to the bottom of the sidebar */
+  .site-header__user {
+    margin-top: auto;
+  }
+}
+
+/* ---------- 10. User (big avatar + name) ---------- */
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-chip__avatar {
+  width: 67px;
+  height: 67px;
+  flex-shrink: 0;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background-color: var(--purple);
+  box-shadow: 5px 5px 0 var(--ink);
+  object-fit: cover;
+}
+
+.user-chip__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* needed so long names can end with "..." */
+}
+
+.user-chip__name {
+  font-family: var(--font-poppins);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--purple);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-chip__meta {
+  font-family: var(--font-vt323);
+  font-size: 18px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* the "..." button only shows on desktop */
+.user-chip__more {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .user-chip__more {
+    display: flex;
+    margin-left: auto;
+  }
+}
+
+/* ---------- 11. Sidebar menu (desktop) ---------- */
+
+.side-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.side-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 52px;
+  padding: 0 18px 0 14px;
+  border: 2.5px solid transparent;
+  border-radius: 26px;
+  font-family: var(--font-poppins);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.side-nav__link:hover {
+  border-color: var(--ink);
+}
+
+/* the page you are on */
+.side-nav__link.is-active {
+  border-color: var(--ink);
+  background-color: var(--lime);
+  font-weight: 700;
+}
+
+.side-nav__icon {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+/* ---------- 12. Footer + tab bar (phone and tablet) ---------- */
+
+.tab-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  height: 76px;
+  background-color: var(--purple);
+}
+
+.tab-bar__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 12px 24px 14px;
+}
+
+.tab-bar__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 38px;
+  border-radius: 19px;
+}
+
+/* lime pill behind the active icon */
+.tab-bar__link.is-active {
+  width: 52px;
+  background-color: var(--lime);
+}
+
+/* round logo button in the middle */
+.tab-bar__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 49px;
+  height: 49px;
+  margin-top: -6px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background-color: var(--purple);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.tab-bar__logo img {
+  width: 35px;
+  height: 35px;
+}
+
+@media (min-width: 1200px) {
+  .tab-bar {
+    display: none;
+  }
+
+  /* on desktop the footer is the empty right column with a dashed line on its left side */
+  .site-footer {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background-image: url("../assets/img/dash-vertical.svg");
+    background-position: left top;
+    background-repeat: repeat-y;
+  }
+}
