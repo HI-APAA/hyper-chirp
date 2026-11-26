@@ -121,11 +121,28 @@ async function postChirp(payload) {
     }
 }
 
+nameInput.addEventListener('submit', event => {
+    event.preventDefault();
+    const nameData = new FormData(nameInput);
+    let username = JSON.parse(localStorage.getItem('username') || '{}');
+    username = {
+        author_name: nameData.get('author_name'),
+    };
+    localStorage.setItem('username', JSON.stringify(username));
+})
+
+function getUsernameFromLocalStorage() {
+    const username = JSON.parse(localStorage.getItem('username') || '{}');
+    nameInput.elements.author_name.value = username.author_name || '';
+}
+
+getUsernameFromLocalStorage();
+
 form.addEventListener('submit', event => {
     event.preventDefault();
     const formData = new FormData(form);
     const payload = {
-        author_name: formData.get('author_name'),
+        author_name: nameInput.elements.author_name.value,
         content: formData.get('content'),
         tag: formData.get('tag') || undefined,
         is_anonymous: formData.has('is_anonymous'),
