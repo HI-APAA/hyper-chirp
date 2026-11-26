@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APAA — New chirp (DEMO)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Poppins:wght@500;700&family=VT323&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+<!-- TEMPORARY DEMO: hardcoded components for visual check against Figma. Delete before shipping. -->
+<div class="page">
+  <header id="header" class="site-header">
+    <a class="site-header__back back-button" href="feed.html" aria-label="Back to feed">
+      <img class="icon" src="assets/icons/back.svg" alt="" aria-hidden="true">
+    </a>
+    <a class="site-header__logo" href="feed.html" aria-label="APAA home">
+      <img class="site-header__logo-img" src="assets/img/logo-apaa.svg" alt="APAA" width="141" height="41">
+    </a>
+    <nav class="site-header__nav side-nav" aria-label="Main">
+      <ul class="side-nav__list">
+        <li>
+          <a class="side-nav__link is-active" aria-current="page" href="feed.html">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/home.svg" alt="" aria-hidden="true"></span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#search">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/search.svg" alt="" aria-hidden="true"></span>
+            Search
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#notifications">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/bell.svg" alt="" aria-hidden="true">
+            <img class="unread-dot" src="assets/icons/unread.svg" alt="" aria-hidden="true"></span>
+            Notifications <span class="visually-hidden">(unread)</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#messages">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/messages.svg" alt="" aria-hidden="true">
+            <img class="unread-dot" src="assets/icons/unread.svg" alt="" aria-hidden="true"></span>
+            Messages <span class="visually-hidden">(unread)</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#profile">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/profile.svg" alt="" aria-hidden="true"></span>
+            Profile
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <a class="site-header__cta button button--primary" href="form.html">
+      <img class="icon icon--plus" src="assets/icons/plus.svg" alt="" aria-hidden="true">
+      <span>Post APAA</span>
+    </a>
+    <div class="site-header__user user-chip">
+      <img class="user-chip__avatar" src="assets/img/avatar-default.svg" alt="" width="67" height="67">
+      <div class="user-chip__text">
+        <span class="user-chip__name">Mia Schneider</span>
+        <span class="user-chip__meta">@mia.s · new chirp</span>
+      </div>
+      <button class="user-chip__more icon-button" type="button" aria-label="Account options">
+        <img class="icon" src="assets/icons/more.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+    <a class="site-header__inbox icon-button" href="#messages" aria-label="Messages, 2 unread">
+      <img class="icon icon--nav" src="assets/icons/messages.svg" alt="" aria-hidden="true">
+      <img class="unread-dot" src="assets/icons/unread.svg" alt="" aria-hidden="true">
+    </a>
+  </header>
+  <main id="form-root" class="page__main">
+    <div class="page-title">
+      <a class="back-button" href="feed.html" aria-label="Back to feed">
+        <img class="icon" src="assets/icons/back.svg" alt="" aria-hidden="true">
+      </a>
+      <div class="page-title__text">
+        <h1 class="page-title__heading">New chirp</h1>
+        <p class="page-title__sub">Share something with the whole school</p>
+      </div>
+    </div>
+    <div class="post-form__status is-hidden" aria-live="polite"></div>
+    <form class="post-form" novalidate>
+      <div class="post-form__card">
+        <div class="field">
+          <label class="field__label" for="display-name">Display name</label>
+          <input class="field__input" id="display-name" name="displayName" type="text" value="Mia Schneider" autocomplete="nickname" required aria-describedby="display-name-error">
+          <p class="field__error" id="display-name-error"><span class="field__error-icon" aria-hidden="true">!</span>Please enter a display name.</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="message">Message</label>
+          <div class="field__textarea">
+            <textarea class="field__textarea-input" id="message" name="message" maxlength="280" placeholder="What's happening at school today?" required aria-describedby="message-counter message-error"></textarea>
+            <span class="field__counter" id="message-counter" aria-live="polite">0/280</span>
+          </div>
+          <p class="field__error" id="message-error"><span class="field__error-icon" aria-hidden="true">!</span>Write something before posting.</p>
+        </div>
+        <div class="tag-field">
+          <div class="field">
+            <label class="field__label" for="tag">Tag<span class="field__optional">, optional</span></label>
+            <input class="field__input" id="tag" name="tag" type="text" placeholder="#addatag">
+          </div>
+          <div class="tag-suggestions">
+            <span class="tag-suggestions__label" id="tag-suggestions-label">Popular:</span>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#wintermarket</button>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#sciencefair</button>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#codingclub</button>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#lostandfound</button>
+          </div>
+        </div>
+        <hr class="divider post-form__divider">
+        <div class="post-form__footer">
+          <label class="checkbox">
+            <input class="checkbox__input" type="checkbox" name="anonymous" aria-describedby="anon-help">
+            <span class="checkbox__text">
+              <span class="checkbox__label">Post anonymously</span>
+              <span class="checkbox__help" id="anon-help">Your name and photo will be hidden.</span>
+            </span>
+          </label>
+          <div class="post-form__actions">
+            <button class="button button--ghost" type="button">Cancel</button>
+            <button class="button button--primary post-form__submit" type="submit">
+              <img class="icon icon--plus" src="assets/icons/plus.svg" alt="" aria-hidden="true">
+              Post APAA
+            </button>
+          </div>
+        </div>
+      </div>
+      <button class="button button--primary post-form__mobile-submit" type="submit">
+        <img class="icon icon--plus" src="assets/icons/plus.svg" alt="" aria-hidden="true">
+        Post APAA
+      </button>
+    </form>
+
+    <!-- ===== STATES (demo only) ===== -->
+    <h2 style="font-family:var(--font-vt323);font-size:18px;color:var(--muted);margin:3rem 0 1rem">States: error card · invalid fields · checked · disabled · loading · select · radio</h2>
+    <div class="post-form__status" aria-live="polite">
+    <div class="error-card" role="alert">
+      <p class="error-card__title">ERROR</p>
+      <hr class="divider divider--error">
+      <p class="error-card__message">Science fair results are in! Huge congrats to class 9B.</p>
+      <button class="error-card__close tag" type="button">Close</button>
+    </div>
+    </div>
+    <form class="post-form" novalidate>
+      <div class="post-form__card">
+        <div class="field is-invalid">
+          <label class="field__label" for="inv-display-name">Display name</label>
+          <input class="field__input" id="inv-display-name" name="displayName" type="text" autocomplete="nickname" required aria-invalid="true" aria-describedby="inv-display-name-error">
+          <p class="field__error" id="inv-display-name-error"><span class="field__error-icon" aria-hidden="true">!</span>Please enter a display name.</p>
+        </div>
+        <div class="field is-invalid">
+          <label class="field__label" for="inv-message">Message</label>
+          <div class="field__textarea">
+            <textarea class="field__textarea-input" id="inv-message" name="message" maxlength="280" placeholder="What's happening at school today?" required aria-invalid="true" aria-describedby="inv-message-counter inv-message-error"></textarea>
+            <span class="field__counter" id="inv-message-counter" aria-live="polite">0/280</span>
+          </div>
+          <p class="field__error" id="inv-message-error"><span class="field__error-icon" aria-hidden="true">!</span>Write something before posting.</p>
+        </div>
+        <div class="tag-field">
+          <div class="field">
+            <label class="field__label" for="inv-tag">Tag<span class="field__optional">, optional</span></label>
+            <input class="field__input" id="inv-tag" name="tag" type="text" placeholder="#addatag">
+          </div>
+          <div class="tag-suggestions">
+            <span class="tag-suggestions__label" id="inv-tag-suggestions-label">Popular:</span>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#wintermarket</button>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#sciencefair</button>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#codingclub</button>
+          <button class="tag" type="button" aria-describedby="tag-suggestions-label">#lostandfound</button>
+          </div>
+        </div>
+        <hr class="divider post-form__divider">
+        <div class="post-form__footer">
+          <label class="checkbox">
+            <input class="checkbox__input" type="checkbox" name="anonymous" aria-describedby="inv-anon-help">
+            <span class="checkbox__text">
+              <span class="checkbox__label">Post anonymously</span>
+              <span class="checkbox__help" id="inv-anon-help">Your name and photo will be hidden.</span>
+            </span>
+          </label>
+          <div class="post-form__actions">
+            <button class="button button--ghost" type="button">Cancel</button>
+            <button class="button button--primary post-form__submit" type="submit">
+              <img class="icon icon--plus" src="assets/icons/plus.svg" alt="" aria-hidden="true">
+              Post APAA
+            </button>
+          </div>
+        </div>
+      </div>
+      <button class="button button--primary post-form__mobile-submit" type="submit">
+        <img class="icon icon--plus" src="assets/icons/plus.svg" alt="" aria-hidden="true">
+        Post APAA
+      </button>
+    </form>
+
+    <div style="display:flex;flex-direction:column;gap:1.25rem;margin-top:2rem">
+      <label class="checkbox">
+        <input class="checkbox__input" type="checkbox" checked>
+        <span class="checkbox__text"><span class="checkbox__label">Checked checkbox</span></span>
+      </label>
+      <div class="field">
+        <label class="field__label" for="audience">Audience</label>
+        <select class="field__input field__input--select" id="audience"><option>Whole school</option><option>My class</option></select>
+      </div>
+      <fieldset class="radio-group">
+        <legend class="radio-group__legend">Visibility</legend>
+        <label class="radio"><input class="radio__input" type="radio" name="vis" checked><span class="radio__text"><span class="radio__label">Public</span></span></label>
+        <label class="radio"><input class="radio__input" type="radio" name="vis"><span class="radio__text"><span class="radio__label">Class only</span><span class="radio__help">Only your class sees it.</span></span></label>
+      </fieldset>
+      <div class="field">
+        <label class="field__label" for="dis">Disabled input</label>
+        <input class="field__input" id="dis" disabled value="Can't edit">
+      </div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <button class="button button--primary" disabled>Disabled</button>
+        <button class="button button--primary" disabled>Posting…</button>
+        <span class="tag is-active">#selected</span>
+      </div>
+    </div>
+  </main>
+  <footer id="footer" class="site-footer">
+    <nav class="tab-bar" aria-label="Main">
+      <ul class="tab-bar__list">
+        <li><a class="tab-bar__link is-active" href="feed.html" aria-label="Home" aria-current="page">
+          <img class="icon icon--nav" src="assets/icons/home.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__link" href="#search" aria-label="Search">
+          <img class="icon icon--nav" src="assets/icons/search.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__logo" href="feed.html" aria-label="APAA">
+          <img src="assets/img/monkey-lime.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__link" href="#profile" aria-label="Profile">
+          <img class="icon icon--nav" src="assets/icons/profile.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__link" href="form.html" aria-label="New chirp">
+          <img class="icon" src="assets/icons/compose.svg" alt="" aria-hidden="true"></a></li>
+      </ul>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>
