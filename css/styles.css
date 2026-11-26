@@ -532,3 +532,106 @@ button.tag:hover {
     background-repeat: repeat-y;
   }
 }
+/* ---------- 13. Error card (the "ERROR" box from Figma) ---------- */
+
+.error-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 16px 24px;
+  border: 2.5px solid var(--lime);
+  border-radius: 16px;
+  background-color: var(--lime);
+  box-shadow: 5px 5px 0 var(--ink);
+  text-align: center;
+}
+
+.error-card__title {
+  font-family: var(--font-poppins);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--error);
+}
+
+.error-card__message {
+  padding: 8px 0 16px;
+  line-height: 18px;
+  overflow-wrap: anywhere;
+}
+
+.error-card__close {
+  min-width: 120px;
+  border-color: var(--error);
+}
+
+/* ---------- 14. Loading ---------- */
+
+/* light grey bar that blinks while posts are loading */
+.skeleton {
+  display: block;
+  border-radius: 6px;
+  background-color: var(--muted);
+  opacity: 0.15;
+  animation: blink 1.4s infinite;
+}
+
+/* turning circle */
+.spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid var(--ink);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- 15. Helper classes (add or remove them in JavaScript) ---------- */
+
+.is-hidden {
+  display: none;
+}
+
+.is-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* text for screen readers only (not visible on screen) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+/* ---------- 16. Keyboard focus ---------- */
+/* purple outline when you move through the page with the Tab key */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 2px;
+}
+
+/* cream outline on the purple tab bar */
+.tab-bar a:focus-visible {
+  outline-color: var(--cream);
+}
