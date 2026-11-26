@@ -1,0 +1,110 @@
+/* ---------- 1. List of posts ---------- */
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* box above the list for error messages
+     (add .is-hidden in JavaScript when there is no message) */
+.feed__status {
+  margin-bottom: 20px;
+}
+
+/* ---------- 2. Post card ---------- */
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 16px 12px;
+  border: 2.5px solid var(--ink);
+  border-radius: 16px;
+  background-color: var(--cream);
+  box-shadow: 5px 5px 0 var(--ink);
+} /* top row: avatar | name and handle | "..." */
+.post-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.post-card__author {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* needed so long names can end with "..." */
+}
+
+.post-card__name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.post-card__name {
+  font-family: var(--font-poppins);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--purple);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* orange "verified" star next to the name */
+.post-card__badge {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* "@handle · 2h" */
+.post-card__meta {
+  font-family: var(--font-vt323);
+  font-size: 18px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-card__more {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* text and tags start under the name:
+       40px avatar + 12px gap = 52px */
+.post-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding-left: 52px;
+}
+
+.post-card__text {
+  font-size: 13px;
+  line-height: 18px;
+  overflow-wrap: anywhere; /* long links go to the next line */
+  white-space: pre-line; /* keeps the line breaks from the API */
+}
+
+/* picture in a post (optional — not in the Figma design) */
+.post-card__media {
+  width: 100%;
+  height: 200px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+.post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
