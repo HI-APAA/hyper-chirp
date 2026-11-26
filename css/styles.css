@@ -1,0 +1,16 @@
+/* ---------- 1. Colors and fonts variables from the design in Figma ---------- */
+
+:root {
+  --purple: #874bfe;
+  --ink: #111111;
+  --muted: #5b4e7a;
+  --cream: #fffdf2;
+  --white: #ffffff;
+  --lime: #cfe600;
+  --orange: #fe552f;
+  --error: #ff400c;
+
+  --font-poppins: "Poppins", sans-serif;
+  --font-vt323: "VT323", monospace;
+  --font-inter: "Inter", sans-serif;
+}
