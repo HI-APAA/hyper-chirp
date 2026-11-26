@@ -5,6 +5,7 @@ const loader = document.querySelector('.loader')
 const form = document.querySelector('#chirp-form');
 const nameInput = document.querySelector('#name-input');
 const submitButton = form.querySelector('button');
+const body = document.body;
 
 async function fetchChirps() {
     try {
@@ -133,8 +134,14 @@ nameInput.addEventListener('submit', event => {
 
 function getUsernameFromLocalStorage() {
     const username = JSON.parse(localStorage.getItem('username') || '{}');
-    nameInput.elements.author_name.value = username.author_name || '';
+
+    nameInput.elements.author_name.value = username.author_name || '';;
+
+    const displayUsername = document.createElement('h2');
+    displayUsername.textContent = username.author_name || '';;
+    body.append(displayUsername);
 }
+
 
 getUsernameFromLocalStorage();
 
