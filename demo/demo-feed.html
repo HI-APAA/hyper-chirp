@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APAA — Feed (DEMO)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Poppins:wght@500;700&family=VT323&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/feed.css">
+</head>
+<body>
+<!-- TEMPORARY DEMO: hardcoded components for visual check against Figma. Delete before shipping. -->
+<div class="page">
+  <header id="header" class="site-header">
+    <a class="site-header__logo" href="feed.html" aria-label="APAA home">
+      <img class="site-header__logo-img" src="assets/img/logo-apaa.svg" alt="APAA" width="141" height="41">
+    </a>
+    <nav class="site-header__nav side-nav" aria-label="Main">
+      <ul class="side-nav__list">
+        <li>
+          <a class="side-nav__link is-active" aria-current="page" href="feed.html">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/home.svg" alt="" aria-hidden="true"></span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#search">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/search.svg" alt="" aria-hidden="true"></span>
+            Search
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#notifications">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/bell.svg" alt="" aria-hidden="true">
+            <img class="unread-dot" src="assets/icons/unread.svg" alt="" aria-hidden="true"></span>
+            Notifications <span class="visually-hidden">(unread)</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#messages">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/messages.svg" alt="" aria-hidden="true">
+            <img class="unread-dot" src="assets/icons/unread.svg" alt="" aria-hidden="true"></span>
+            Messages <span class="visually-hidden">(unread)</span>
+          </a>
+        </li>
+        <li>
+          <a class="side-nav__link" href="#profile">
+            <span class="side-nav__icon"><img class="icon icon--nav" src="assets/icons/profile.svg" alt="" aria-hidden="true"></span>
+            Profile
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <a class="site-header__cta button button--primary" href="form.html">
+      <img class="icon icon--plus" src="assets/icons/plus.svg" alt="" aria-hidden="true">
+      <span>Post APAA</span>
+    </a>
+    <div class="site-header__user user-chip">
+      <img class="user-chip__avatar" src="assets/img/avatar-default.svg" alt="" width="67" height="67">
+      <div class="user-chip__text">
+        <span class="user-chip__name">Mia Schneider</span>
+        <span class="user-chip__meta">@mia.s · new chirp</span>
+      </div>
+      <button class="user-chip__more icon-button" type="button" aria-label="Account options">
+        <img class="icon" src="assets/icons/more.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+    <a class="site-header__inbox icon-button" href="#messages" aria-label="Messages, 2 unread">
+      <img class="icon icon--nav" src="assets/icons/messages.svg" alt="" aria-hidden="true">
+      <img class="unread-dot" src="assets/icons/unread.svg" alt="" aria-hidden="true">
+    </a>
+  </header>
+  <main id="feed-root" class="page__main">
+    <div class="feed__status is-hidden" aria-live="polite"></div>
+    <ul class="feed" aria-label="Chirps">
+      <li>
+        <article class="post-card" aria-labelledby="post-1-author">
+          <header class="post-card__header">
+            <img class="avatar avatar--placeholder" src="assets/img/avatar-default.svg" alt="" width="40" height="40">
+            <div class="post-card__author">
+              <div class="post-card__name-row">
+                <span class="post-card__name" id="post-1-author">Student Council</span>
+              <img class="post-card__badge" src="assets/icons/verified.svg" alt="Verified" width="16" height="16">
+              </div>
+              <span class="post-card__meta">@apaa.council · <time datetime="2026-11-26T12:00">1h</time></span>
+            </div>
+            <button class="post-card__more icon-button" type="button" aria-label="More options">
+              <img class="icon" src="assets/icons/more.svg" alt="" aria-hidden="true">
+            </button>
+          </header>
+          <div class="post-card__content">
+            <p class="post-card__text">Reminder: the winter market is this Friday from 14:00 in the main hall. Bring cookies, crafts or just good vibes. Every euro goes to the class trip fund.</p>
+          <div class="post-card__tags">
+            <a class="tag" href="#tag-wintermarket">#wintermarket</a>
+          </div>
+          </div>
+          <hr class="divider">
+          <div class="post-actions">
+            <button class="post-action" type="button" aria-pressed="false" aria-label="Like, 132 likes">
+              <img class="post-action__icon post-action__icon--default" src="assets/icons/heart.svg" alt="" aria-hidden="true">
+              <img class="post-action__icon post-action__icon--active" src="assets/icons/heart-filled.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">132</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Comments, 27">
+              <img class="post-action__icon" src="assets/icons/comment.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">27</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Rechirp, 41">
+              <img class="post-action__icon" src="assets/icons/rechirp.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">41</span>
+            </button>
+            <button class="post-action post-action--icon-only" type="button" aria-label="Save">
+              <img class="post-action__icon" src="assets/icons/save.svg" alt="" aria-hidden="true">
+            </button>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="post-card" aria-labelledby="post-2-author">
+          <header class="post-card__header">
+            <img class="avatar avatar--placeholder" src="assets/img/avatar-default.svg" alt="" width="40" height="40">
+            <div class="post-card__author">
+              <div class="post-card__name-row">
+                <span class="post-card__name" id="post-2-author">Mia Schneider</span>
+              </div>
+              <span class="post-card__meta">@mia.s · <time datetime="2026-11-26T12:00">2h</time></span>
+            </div>
+            <button class="post-card__more icon-button" type="button" aria-label="More options">
+              <img class="icon" src="assets/icons/more.svg" alt="" aria-hidden="true">
+            </button>
+          </header>
+          <div class="post-card__content">
+            <p class="post-card__text">Science fair results are in! Huge congrats to class 9B for the solar-powered greenhouse. Pick up your certificates at the front office today.</p>
+          <div class="post-card__tags">
+            <a class="tag" href="#tag-sciencefair">#sciencefair</a>
+          </div>
+          </div>
+          <hr class="divider">
+          <div class="post-actions">
+            <button class="post-action is-active" type="button" aria-pressed="true" aria-label="Like, 48 likes">
+              <img class="post-action__icon post-action__icon--default" src="assets/icons/heart.svg" alt="" aria-hidden="true">
+              <img class="post-action__icon post-action__icon--active" src="assets/icons/heart-filled.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">48</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Comments, 12">
+              <img class="post-action__icon" src="assets/icons/comment.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">12</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Rechirp, 6">
+              <img class="post-action__icon" src="assets/icons/rechirp.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">6</span>
+            </button>
+            <button class="post-action post-action--icon-only" type="button" aria-label="Save">
+              <img class="post-action__icon" src="assets/icons/save.svg" alt="" aria-hidden="true">
+            </button>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="post-card" aria-labelledby="post-3-author">
+          <header class="post-card__header">
+            <img class="avatar avatar--placeholder" src="assets/img/avatar-default.svg" alt="" width="40" height="40">
+            <div class="post-card__author">
+              <div class="post-card__name-row">
+                <span class="post-card__name" id="post-3-author">Jonas Weber</span>
+              </div>
+              <span class="post-card__meta">@jonas.codes · <time datetime="2026-11-26T12:00">3h</time></span>
+            </div>
+            <button class="post-card__more icon-button" type="button" aria-label="More options">
+              <img class="icon" src="assets/icons/more.svg" alt="" aria-hidden="true">
+            </button>
+          </header>
+          <div class="post-card__content">
+            <p class="post-card__text">Anyone want to join the coding club? We meet Tuesdays in room 204 and are building this very app. No experience needed, just curiosity.</p>
+          <div class="post-card__tags">
+            <a class="tag" href="#tag-codingclub">#codingclub</a>
+          </div>
+          </div>
+          <hr class="divider">
+          <div class="post-actions">
+            <button class="post-action" type="button" aria-pressed="false" aria-label="Like, 76 likes">
+              <img class="post-action__icon post-action__icon--default" src="assets/icons/heart.svg" alt="" aria-hidden="true">
+              <img class="post-action__icon post-action__icon--active" src="assets/icons/heart-filled.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">76</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Comments, 19">
+              <img class="post-action__icon" src="assets/icons/comment.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">19</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Rechirp, 9">
+              <img class="post-action__icon" src="assets/icons/rechirp.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">9</span>
+            </button>
+            <button class="post-action post-action--icon-only" type="button" aria-label="Save">
+              <img class="post-action__icon" src="assets/icons/save.svg" alt="" aria-hidden="true">
+            </button>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="post-card" aria-labelledby="post-4-author">
+          <header class="post-card__header">
+            <img class="avatar avatar--placeholder" src="assets/img/avatar-default.svg" alt="" width="40" height="40">
+            <div class="post-card__author">
+              <div class="post-card__name-row">
+                <span class="post-card__name" id="post-4-author">Lena Hoffmann</span>
+              </div>
+              <span class="post-card__meta">@lena.h · <time datetime="2026-11-26T12:00">5h</time></span>
+            </div>
+            <button class="post-card__more icon-button" type="button" aria-label="More options">
+              <img class="icon" src="assets/icons/more.svg" alt="" aria-hidden="true">
+            </button>
+          </header>
+          <div class="post-card__content">
+            <p class="post-card__text">Lost: a purple water bottle with a monkey sticker. Last seen near the gym on Monday. Reward is eternal gratitude and one cookie.</p>
+          <div class="post-card__tags">
+            <a class="tag" href="#tag-lostandfound">#lostandfound</a>
+          </div>
+          </div>
+          <hr class="divider">
+          <div class="post-actions">
+            <button class="post-action" type="button" aria-pressed="false" aria-label="Like, 21 likes">
+              <img class="post-action__icon post-action__icon--default" src="assets/icons/heart.svg" alt="" aria-hidden="true">
+              <img class="post-action__icon post-action__icon--active" src="assets/icons/heart-filled.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">21</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Comments, 4">
+              <img class="post-action__icon" src="assets/icons/comment.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">4</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Rechirp, 2">
+              <img class="post-action__icon" src="assets/icons/rechirp.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">2</span>
+            </button>
+            <button class="post-action post-action--icon-only" type="button" aria-label="Save">
+              <img class="post-action__icon" src="assets/icons/save.svg" alt="" aria-hidden="true">
+            </button>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="post-card" aria-labelledby="post-5-author">
+          <header class="post-card__header">
+            <img class="avatar avatar--placeholder" src="assets/img/avatar-default.svg" alt="" width="40" height="40">
+            <div class="post-card__author">
+              <div class="post-card__name-row">
+                <span class="post-card__name" id="post-5-author">Maximilian-Alexander von Hohenzollern-Sigmaringen</span>
+              </div>
+              <span class="post-card__meta">@maximilian.alexander.hohenzollern · <time datetime="2026-11-26T12:00">6h</time></span>
+            </div>
+            <button class="post-card__more icon-button" type="button" aria-label="More options">
+              <img class="icon" src="assets/icons/more.svg" alt="" aria-hidden="true">
+            </button>
+          </header>
+          <div class="post-card__content">
+            <p class="post-card__text">Stress test: a very long name, a long handle, no tag, and a long URL https://example.com/this/is/a/really/long/link/that/should/wrap/nicely/inside/the/card/without/overflowing</p>
+          </div>
+          <hr class="divider">
+          <div class="post-actions">
+            <button class="post-action" type="button" aria-pressed="false" aria-label="Like, 0 likes">
+              <img class="post-action__icon post-action__icon--default" src="assets/icons/heart.svg" alt="" aria-hidden="true">
+              <img class="post-action__icon post-action__icon--active" src="assets/icons/heart-filled.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">0</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Comments, 0">
+              <img class="post-action__icon" src="assets/icons/comment.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">0</span>
+            </button>
+            <button class="post-action" type="button" aria-label="Rechirp, 0">
+              <img class="post-action__icon" src="assets/icons/rechirp.svg" alt="" aria-hidden="true">
+              <span class="post-action__count">0</span>
+            </button>
+            <button class="post-action post-action--icon-only" type="button" aria-label="Save">
+              <img class="post-action__icon" src="assets/icons/save.svg" alt="" aria-hidden="true">
+            </button>
+          </div>
+        </article>
+      </li>
+    </ul>
+    <a class="fab" href="form.html" aria-label="New chirp">
+      <img class="fab__icon" src="assets/icons/asterisk.svg" alt="" aria-hidden="true">
+    </a>
+
+    <!-- ===== STATES (demo only) ===== -->
+    <h2 style="font-family:var(--font-vt323);font-size:18px;color:var(--muted);margin:2.5rem 0 1rem">States: error · loading · empty · pagination</h2>
+    <div class="feed__status" aria-live="polite">
+    <div class="error-card" role="alert">
+      <p class="error-card__title">ERROR</p>
+      <hr class="divider divider--error">
+      <p class="error-card__message">Science fair results are in! Huge congrats to class 9B.</p>
+      <button class="error-card__close tag" type="button">Close</button>
+    </div>
+    </div>
+    <ul class="feed" aria-busy="true">
+      <li aria-hidden="true">
+        <div class="post-card post-card--skeleton">
+          <div class="post-card__header">
+            <span class="post-card__skeleton-avatar skeleton"></span>
+            <div class="post-card__author">
+              <span class="post-card__skeleton-line post-card__skeleton-line--short skeleton"></span>
+            </div>
+          </div>
+          <div class="post-card__content">
+            <span class="post-card__skeleton-line skeleton"></span>
+            <span class="post-card__skeleton-line post-card__skeleton-line--medium skeleton"></span>
+          </div>
+        </div>
+      </li>
+      <li aria-hidden="true">
+        <div class="post-card post-card--skeleton">
+          <div class="post-card__header">
+            <span class="post-card__skeleton-avatar skeleton"></span>
+            <div class="post-card__author">
+              <span class="post-card__skeleton-line post-card__skeleton-line--short skeleton"></span>
+            </div>
+          </div>
+          <div class="post-card__content">
+            <span class="post-card__skeleton-line skeleton"></span>
+            <span class="post-card__skeleton-line post-card__skeleton-line--medium skeleton"></span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div style="height:1.25rem"></div>
+    <div class="feed-empty">
+      <img class="feed-empty__icon" src="assets/img/monkey-lime.svg" alt="" aria-hidden="true">
+      <p class="feed-empty__title">No chirps yet</p>
+      <p class="feed-empty__text">Be the first to post something!</p>
+      <a class="button button--primary" href="form.html">
+        <img class="icon icon--plus" src="assets/icons/plus.svg" alt="" aria-hidden="true"><span>Post APAA</span>
+      </a>
+    </div>
+    <div class="feed-loader" role="status">
+      <span class="spinner" aria-hidden="true"></span>
+      <span class="visually-hidden">Loading more chirps…</span>
+    </div>
+  </main>
+  <footer id="footer" class="site-footer">
+    <nav class="tab-bar" aria-label="Main">
+      <ul class="tab-bar__list">
+        <li><a class="tab-bar__link is-active" href="feed.html" aria-label="Home" aria-current="page">
+          <img class="icon icon--nav" src="assets/icons/home.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__link" href="#search" aria-label="Search">
+          <img class="icon icon--nav" src="assets/icons/search.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__logo" href="feed.html" aria-label="APAA">
+          <img src="assets/img/monkey-lime.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__link" href="#profile" aria-label="Profile">
+          <img class="icon icon--nav" src="assets/icons/profile.svg" alt="" aria-hidden="true"></a></li>
+        <li><a class="tab-bar__link" href="form.html" aria-label="New chirp">
+          <img class="icon" src="assets/icons/compose.svg" alt="" aria-hidden="true"></a></li>
+      </ul>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>
